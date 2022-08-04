@@ -5,7 +5,7 @@ import bson
 import cv2
 import numpy as np
 import gym
-import robot
+from env import robot
 import pprint
 
 class CMD:
@@ -39,8 +39,8 @@ class UEGym():
         self.action_size = None
 
         self._episode_len = 100 # n steps per episode
-        self._nStepsInit = 350  # Frames to advance on initialization to ensure robot is in initial position
-        self._nFramesToSkipPerStep = 1
+        self._nStepsInit = 300  # Frames to advance on initialization to ensure robot is in initial position
+        self._nFramesToSkipPerStep = 6 # determines how much simulation advances before next command is given
 
     def recv_msg(self, waitResponse = True) -> dict:
         raw_msgLen = self._connection.recv(4) # read first 4-bytes that represent size of the remaining buffer
@@ -64,8 +64,8 @@ class UEGym():
 
         self.send_msg(msg=dict(), cmd=CMD.INFO)
         print("[LOG] Waiting for response on info request...")
-        response= self.recv_msg()
 
+        response= self.recv_msg(waitResponse=True)
         self._robot_list = []
         self.action_size = None
         for key in response:
@@ -97,10 +97,12 @@ class UEGym():
 
         self.send_msg(dict(), cmd=CMD.GET_STATE)
         observation_dict = self.recv_msg()
-        return self._parse_observations(observation_dict)
+        images, states, _, _ = self._parse_observations(observation_dict)
+        return images, states
 
     def reset(self):
         self.send_msg(dict(), cmd=CMD.RESET)
+        time.sleep(1)
         self.recv_msg() # Wait for response on 'reset' to confirm it's done
 
         self.requestInfo()
@@ -109,7 +111,7 @@ class UEGym():
         initial_pose_array = np.asarray([self._robot_initial_pose * n_robots],
                                         dtype=np.float64).reshape(n_robots, self.action_size)
 
-        return self.init(initial_pose_array)[0] # return only states, without rewards and dones
+        return self.init(initial_pose_array) # return only states, without rewards and dones
 
     def step(self, actions : np.ndarray):
         if type(actions) != np.ndarray:
@@ -124,15 +126,6 @@ class UEGym():
         self.send_msg(dict(), cmd=CMD.GET_STATE)
         observation_dict =  self.recv_msg()
 
-        # for robot in observation_dict["robots"]:
-        #     w, h = robot["image"]["width"], robot["image"]["height"]
-        #     buf_as_np_array = np.frombuffer(robot["image"]["data"], np.uint8)
-        #     rgb = buf_as_np_array.reshape((h, w, 3))
-        #
-        #     rgb = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
-        #     cv2.imshow(robot["name"], rgb)
-        # cv2.waitKey(1)
-
         return self._parse_observations(observation_dict)
 
     def _skip_n_frames(self, nFrames):
@@ -142,7 +135,7 @@ class UEGym():
         for i in range(nFrames):
             self.send_msg(dict(), cmd=CMD.SKIP_FRAME)
             self.recv_msg(True) # Wait for response
-        print("Done")
+
 
     def _parse_actions(self, actions : np.ndarray):
         actions_dict = {
@@ -180,14 +173,12 @@ class UEGym():
             rewards.append(robot["reward"])
             dones.append(robot["done"])
 
-        next_states = {
-            "images": images_list,
-            "states": states_list
-        }
-
-        return next_states, rewards, dones
+        return np.array(images_list), np.array(states_list), np.array(rewards), np.array(dones)
 
 if __name__ == "__main__":
+    print("#"*50)
+    print("\t"*5, "TEST ENV")
+    print("#" * 50)
 
     env = UEGym()
     time.sleep(1) # Wait for simulation to initialize
