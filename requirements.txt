@@ -1,0 +1,75 @@
+aiosignal==1.2.0
+async-timeout==4.0.2
+attrs==21.4.0
+brotlipy @ file:///D:/bld/brotlipy_1648854327487/work
+cbor2==5.4.3
+certifi==2022.6.15
+cffi @ file:///D:/bld/cffi_1656782930891/work
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1655906222726/work
+click==8.1.3
+cloudpickle @ file:///home/conda/feedstock_root/build_artifacts/cloudpickle_1653061851209/work
+colorama==0.4.4
+cryptography @ file:///D:/bld/cryptography_1657174166005/work
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+Cython @ file:///D:/bld/cython_1659102049698/work
+deap==1.3.1
+Deprecated==1.2.13
+distlib==0.3.4
+filelock==3.7.0
+fonttools @ file:///D:/bld/fonttools_1657249503498/work
+frozenlist==1.3.0
+grpcio==1.43.0
+gym @ file:///D:/bld/gym_1644329041679/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1642433548627/work
+jsonschema==4.5.1
+kiwisolver @ file:///D:/bld/kiwisolver_1657953200729/work
+matplotlib @ file:///D:/bld/matplotlib-suite_1659031692802/work
+mkl-fft==1.3.1
+mkl-random==1.2.2
+mkl-service==2.4.0
+msgpack==1.0.3
+munkres==1.1.4
+numpy @ file:///D:/bld/numpy_1657483989399/work
+opencv-python==4.6.0.66
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1637239678211/work
+Pillow @ file:///D:/bld/pillow_1657007292472/work
+platformdirs==2.5.2
+ply==3.11
+protobuf==3.20.1
+pyarrow==7.0.0
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+pygad==2.16.3
+pymongo @ file:///D:/bld/pymongo_1658783539706/work
+pymongoarrow==0.4.0
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1643496850550/work
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+PyQt5==5.15.7
+PyQt5-sip @ file:///D:/bld/pyqt-split_1657234646811/work/pyqt_sip
+pyquaternion==0.9.9
+pyrsistent==0.18.1
+PySocks @ file:///D:/bld/pysocks_1648857426942/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+PyYAML==6.0
+pyzmq==23.2.0
+ray==1.12.1
+redis==4.3.1
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1656534056640/work
+scipy==1.9.0
+sip @ file:///D:/bld/sip_1655765083928/work
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+threaded==4.1.0
+toml @ file:///home/conda/feedstock_root/build_artifacts/toml_1604308577558/work
+torch==1.12.0
+torchaudio==0.12.0
+torchvision==0.13.0
+tornado @ file:///D:/bld/tornado_1656937934674/work
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1656706066251/work
+unicodedata2 @ file:///D:/bld/unicodedata2_1649112114189/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1658789158161/work
+virtualenv==20.14.1
+websocket-client==1.3.2
+websocket-server==0.6.4
+websockets @ file:///D:/bld/websockets_1650300548728/work
+win-inet-pton @ file:///D:/bld/win_inet_pton_1648771910527/work
+wincertstore==0.2
+wrapt==1.14.1
