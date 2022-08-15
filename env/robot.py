@@ -12,6 +12,8 @@ class Robot:
         self.range = (np.array(self.jointUpperLimits) - np.array(self.jointLowerLimits))/2
         self.offset = (np.array(self.jointUpperLimits) + np.array(self.jointLowerLimits))/2
 
+        self.currentJointStates = list()
+
     def actionDict(self, actions):
         ret = {
             "robot":
@@ -35,7 +37,6 @@ class Robot:
         }
 
         return ret
-
 
     def __str__(self):
         return f"Robot:\n" \

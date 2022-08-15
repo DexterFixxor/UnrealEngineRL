@@ -38,9 +38,9 @@ class UEGym():
         self._robot_initial_pose = [0, -0.35, 0, 2.0, 0, 1.0,  -1.57, 0]
         self.action_size = None
 
-        self._episode_len = 100 # n steps per episode
+        self._episode_len = 50 # n steps per episode
         self._nStepsInit = 150  # Frames to advance on initialization to ensure robot is in initial position
-        self._nFramesToSkipPerStep = 1 # determines how much simulation advances before next command is given
+        self._nFramesToSkipPerStep = 6 # determines how much simulation advances before next command is given
 
     def recv_msg(self, waitResponse = True) -> dict:
         raw_msgLen = self._connection.recv(4) # read first 4-bytes that represent size of the remaining buffer
@@ -48,7 +48,7 @@ class UEGym():
             return dict()
 
         msgLen = int.from_bytes(raw_msgLen, byteorder="big")
-        if waitResponse: time.sleep(0.04)
+        if waitResponse: time.sleep(0.08)
 
         ret = self._connection.recv(msgLen)
         return bson.decode(ret)
